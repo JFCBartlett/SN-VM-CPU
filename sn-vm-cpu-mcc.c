@@ -146,6 +146,7 @@ int main(int argc, char * argv[]){
 		//fire_arc
 		#pragma omp parallel for private(t, ps)
 		for(t = 0; t < n; t++){
+			#pragma omp unroll
 			for(ps = 0; ps < mm; ps++){
 				MELT(y, ps, t, n) = (MELT(bsw, ps, t, n)>0)? mu[MELT(bsp, ps, t, n)] / MELT(bsw, ps, t, n) : (MELT(bsw, ps, t, n)<0)? ((mu[MELT(bsp, ps, t, n)]>0)? 0: INT_MAX): INT_MAX;
 			}
@@ -160,6 +161,7 @@ int main(int argc, char * argv[]){
 		//fire_trs
 		#pragma omp parallel for private(t, ps)
 		for(t = 0; t < n; t++){
+			#pragma omp unroll
 			for(ps = 0; ps < mm; ps++){
 				MELT(y, 0, t, n)=zmin(MELT(y, 0, t, n),MELT(y, ps, t, n));
 			}
