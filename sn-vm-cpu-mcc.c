@@ -175,9 +175,8 @@ int main(int argc, char * argv[]){
 		//choose_f_trs
 		
 		int go=1;
-		#pragma omp parallel for private(t)
-		for(t = 0; t < n; t++){
-			if(MELT(y, 0, t, n)>0 && go){
+		for(t = 0; t < n && go; t++){
+			if(MELT(y, 0, t, n)>0){
 				MELT(y, 0, 1, n)=MELT(y, 0, t, n); 
 				MELT(y, 0, 0, n)=t; 
 				go=0;
@@ -253,5 +252,3 @@ int main(int argc, char * argv[]){
 	free(y);
 
 }//end of main
-
-// @ 2024 Tatiana R. Shmeleva: ta.arta@gmail.com
