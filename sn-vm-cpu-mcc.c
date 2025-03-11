@@ -201,7 +201,7 @@ int main(int argc, char * argv[]){
 			}
 			//next marking
 			//next_mu
-			#pragma omp parallel for private(ps)
+			#pragma omp unroll
 			for(ps = 0; ps < mm; ps++){
 				if(MELT(bsw, ps, f[0], n)>0){
 					mu[MELT(bsp, ps, f[0], n)]-=f[1]*MELT(bsw, ps, f[0], n);
