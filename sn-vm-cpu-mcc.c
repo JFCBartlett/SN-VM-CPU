@@ -18,7 +18,6 @@
 #define MOFF(i, j, d2) ((d2)*(i)+(j))
 #define MELT(x, i, j, d2) (*((x)+MOFF(i,j,d2)))
 
-#define zmax(x, y) (((x)>(y))?(x):(y))
 #define zmin(x, y) (((x)<(y))?(x):(y))
 
 
@@ -130,11 +129,12 @@ int main(int argc, char * argv[]){
 		printf("dsw:\n");
 		print_matr(dsw, mm, n);
 	}
-
-	printf("initial mu:\n");
+	
 	read_vect(mu, m);
-	print_vect(mu, m);
- 
+	if(dbg>0){
+		printf("initial mu:\n");
+		print_vect(mu, m);
+	}
  
 	t1=seconds();
   
@@ -156,15 +156,19 @@ int main(int argc, char * argv[]){
 			printf("y#1:\n");                              
 			print_matr(y, mm, n);
 		} 
+			//#pragma omp simd reduction(min:MELT(y, 0, t, n))
 			
 		//transition firing multiplicity
 		//fire_trs
 		#pragma omp parallel for private(t, ps)
 		for(t = 0; t < n; t++){
+			int minval = MELT(y, 0, t, n);
+			#pragma omp simd reduction(min:minval)
 			#pragma omp unroll
 			for(ps = 0; ps < mm; ps++){
-				MELT(y, 0, t, n)=zmin(MELT(y, 0, t, n),MELT(y, ps, t, n));
+				minval=zmin(minval,MELT(y,ps,t,n));
 			}
+			MELT(y, 0, t, n) = minval; 
 		}
 	
 		if(dbg>1){
@@ -243,8 +247,10 @@ int main(int argc, char * argv[]){
 	printf("it took %f s.\n", dt);
   
 	//copy from device and print resulting marking
-	printf("final mu:\n");  
-	print_vect(mu, m);
+	if(dbg>0){
+		printf("final mu:\n");  
+		print_vect(mu, m);
+	}
   
 	//free memory of device and host
 	free(bsp);
