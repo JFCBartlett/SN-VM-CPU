@@ -131,10 +131,8 @@ int main(int argc, char * argv[]){
 	}
 	
 	read_vect(mu, m);
-	if(dbg>0){
-		printf("initial mu:\n");
-		print_vect(mu, m);
-	}
+	printf("initial mu:\n");
+	print_vect(mu, m);
  
 	t1=seconds();
   
@@ -247,10 +245,8 @@ int main(int argc, char * argv[]){
 	printf("it took %f s.\n", dt);
   
 	//copy from device and print resulting marking
-	if(dbg>0){
-		printf("final mu:\n");  
-		print_vect(mu, m);
-	}
+	printf("final mu:\n");  
+	print_vect(mu, m);
   
 	//free memory of device and host
 	free(bsp);
