@@ -1,4 +1,29 @@
 # SN-VM-CPU
-Virtual machine of sleptsov net on CPU using OpenMP using the mcc file format
+Virtual machine of Sleptsov Net on CPU using OpenMP using only the MCC file format. Quickly computes the result of a Sleptsov Net using multiple CPU cores.
 
-This code is based on [SN-VM-GPU](https://github.com/tishtri/SN-VM-GPU) and has been modified to run on a cpu using OpenMP.
+This code is based on [SN-VM-GPU](https://github.com/tishtri/SN-VM-GPU) and has been modified to run on a CPU using OpenMP.
+
+## How to compile and run
+
+This is how to compile the program using GCC. Requires GCC 14 or higher. The -fopenmp flag is also needed for the parallelisation to work. The -o flag is used to name the executable file.
+
+```
+gcc sn-vm-cpu-mcc.c -o sn-vm-cpu-mcc -fopenmp
+```
+
+Usage:
+```
+sn-vm-cpu-mcc [argv1] [argv2] < SN.mcc
+  argv1 is the debug level, default is zero and goes upto three with each level giving more debug info. 
+  argv2 is the Sleptsov Net steps limit, this limits the number of Sleptsov Net steps (no limit by default).
+  SN.mcc is the given Sleptsov Net in the MCC format.
+```
+
+The program's output can be redirected to a txt file using `>` or `>>`. `>>` appends to the file, `>` overwrites.
+```
+sn-vm-cpu-mcc < SN.mcc > output.txt
+```
+
+## References
+
+1. References for Sleptsov Net Computing (SNC) to read, watch, run, cite, and join. https://dimazaitsev.github.io/snc.html
