@@ -24,6 +24,17 @@ The program's output can be redirected to a txt file using `>` or `>>`. `>>` app
 sn-vm-cpu-mcc < SN.mcc > output.txt
 ```
 
+## Results
+
+|MCC File|No Parallelisation|Parallelised|
+|--------|------------------|------------|
+|add     |0.000004 s        |0.001018 s  |
+|d2      |0.000508 s        |0.032883 s  |
+|d4      |7.903104 s        |166.627328 s|
+|mmul7   |109.383386 s      |15.639665 s |
+|mm10    |2805.081585 s     |357.467199 s|
+
+
 ## References
 
 1. References for Sleptsov Net Computing (SNC) to read, watch, run, cite, and join. https://dimazaitsev.github.io/snc.html
