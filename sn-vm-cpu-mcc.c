@@ -1,5 +1,5 @@
 //SN-VM-CPU-MCC v.1.0.0
-//use to compile gcc sn-vm-cpu-mcc.c -O3 -o cpu
+//use to compile gcc sn-vm-cpu-mcc.c -O3 -o sn-vm-cpu -fopenmp
 //-O3 flag significantly increases optimisation causing far quicker computation
 //2025 Jaden F C Bartlett
 
