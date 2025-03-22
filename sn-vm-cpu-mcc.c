@@ -254,5 +254,6 @@ int main(int argc, char * argv[]){
 	free(dsp); 
 	free(dsw); 
 	free(y);
+	free(mu);
 
 }//end of main
