@@ -40,6 +40,10 @@ The parallel version is slower for the dn nets since they are only able to be co
 
 The parallel version is faster for the mmn nets as they can be calculated in parallel which makes the parallel version quicker. This becomes more prevelant as the nets increase in size.
 
+<p align="middle">
+  <img src="https://github.com/user-attachments/assets/6ff89e05-50ca-476d-b263-56e27544eede" width="384"><img src="https://github.com/user-attachments/assets/87f45f57-4aa2-4c7f-8cf6-c946d1bbaa75" width="384">
+</p>
+d4 and mm10 have been omitted due to the factor in execution time.
 
 ## References
 
