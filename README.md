@@ -36,6 +36,10 @@ sn-vm-cpu-mcc < SN.mcc > output.txt
 |mm7     |109.383386 s      |15.639665 s                  |6.99              |20.957118 s      |0.34             |
 |mm10    |2805.081585 s     |357.467199 s                 |7.85              |415.732053 s     |0.16             |
 
+The parallel version is slower for the dn nets since they are only able to be computed sequentially. The reason they are far slower is since several parallel sections are opened and closed and this likely why the difference between parallel and sequential reduces as the net gets larger.
+
+The parallel version is faster for the mmn nets as they can be calculated in parallel which makes the parallel version quicker. This becomes more prevelant as the nets increase in size.
+
 
 ## References
 
